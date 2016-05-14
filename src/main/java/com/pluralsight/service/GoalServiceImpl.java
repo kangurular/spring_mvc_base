@@ -18,12 +18,12 @@ public class GoalServiceImpl implements GoalService {
 
 	@Transactional
 	public Goal saveGoal(Goal goal) {
-		return goalRepository.saveGoal(goal);
+		return goalRepository.save(goal);
 	}
 
 	@Transactional
 	public List<Goal> findAllGoals() {
-		return goalRepository.loadAll();
+		return goalRepository.findAll();
 	}
 
 	@Override
