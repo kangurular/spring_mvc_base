@@ -16,20 +16,26 @@ public class GoalRepositoryImpl implements GoalRepository {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public Goal saveGoal(Goal goal) {
-		em.persist(goal);
-		em.flush();
+		if (goal.getId() == null) {
+			em.persist(goal);
+			em.flush();
+		} else {
+			goal = em.merge(goal);
+		}
 		return goal;
 	}
 
 	public List<Goal> loadAll() {
-		TypedQuery<Goal> query = em.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
+		TypedQuery<Goal> query = em.createNamedQuery(Goal.FIND_ALL_GOALS,
+				Goal.class);
 		return query.getResultList();
 	}
 
 	public List<GoalReport> findAllGoalReports() {
-		TypedQuery<GoalReport> query = em.createNamedQuery(Goal.FIND_GOAL_REPORTS, GoalReport.class);
+		TypedQuery<GoalReport> query = em.createNamedQuery(
+				Goal.FIND_GOAL_REPORTS, GoalReport.class);
 		return query.getResultList();
 	}
 

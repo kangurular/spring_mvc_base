@@ -30,7 +30,7 @@ public class Goal {
 	@Id
 	@GeneratedValue
 	@Column(name = "GOAL_ID")
-	private int id;
+	private Long id;
 
 	@Range(min = 1, max = 120)
 	@Column(name = "MINUTES")
@@ -55,11 +55,12 @@ public class Goal {
 		this.minutes = minutes;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 }
